@@ -1,0 +1,8 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: edb-test-group
+  namespace: 1dbf2e-test
+spec:
+  targetNamespaces:
+  - 1dbf2e-test

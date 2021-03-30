@@ -2,9 +2,9 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   name: cloud-native-postgresql
-  namespace: edb-operator
+  namespace: caggles-test
 spec:
-  channel: beta
+  channel: stable
   name: cloud-native-postgresql
   source: certified-operators
   sourceNamespace: openshift-marketplace

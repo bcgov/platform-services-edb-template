@@ -1,0 +1,3 @@
+CLUSTER_NAME=cailey-test
+APP_USER_NAME=cailey
+DATABASE_NAME=cailey

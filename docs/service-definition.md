@@ -18,31 +18,23 @@ tags:
 
 ### Features & Functions
 
-The EnterpriseDB (EDB) service is provided as one of the Shared Services on the BC Gov's DevOps OpenShift 4 Platform. 
-This service enables product teams to use the EnterpriseDB version of PostgreSQL to create HA database instances in their app. 
-The service is enabled by an operator built by EDB and installed in OCP 4 Silver cluster, which can be used to install and add HA capabilities to the instances of Postgres in various namespaces.
+The EnterpriseDB (EDB) service is provided as one of the Shared Services on the BC Gov's DevOps OpenShift 4 Platform. This service enables product teams to use the EnterpriseDB version of PostgreSQL to create HA database instances in their app. The service is enabled by an operator built by EDB and installed in OCP 4 Silver cluster, which can be used to install and add HA capabilities to the instances of Postgres in various namespaces.
 
 You can find further information on the operator's features and functionality here: https://docs.enterprisedb.io/cloud-native-postgresql
 
-Associated with the operator is the RemoteDBA (RDBA) support service offered by the EnterpriseDB vendor under a separate license. 
-The Enterprise DB's RDBA team assist the Platform Services Team with providing support for the EDB operator and can also provide support for database clusters belonging to the product teams which have purchased a license for their service. 
+Associated with the operator is the RemoteDBA (RDBA) support service offered by the EnterpriseDB vendor under a separate license. The Enterprise DB's RDBA team assist the Platform Services Team with providing support for the EDB operator and can also provide support for database clusters belonging to the product teams which have purchased a license for their service. 
 
 ### Eligibility & Prerequisites
 
-This service is currently offered to BC Government development teams building cloud native applications on the OpenShift 4 Platform. 
-The EnterpriseDB Service is available to all the product teams **who have purchased a license from the EnterpriseDB vendor**. 
+This service is currently offered to BC Government development teams building cloud native applications on the OpenShift 4 Platform. The EnterpriseDB Service is available to all the product teams **who have purchased a license from the EnterpriseDB vendor**. 
 
-Those without a license can use the operator to build a database cluster to test, which will operate for 30 days. 
-If there is no license added to the database cluster before the end of the 30 period, the operator will no longer perform work on the database pods.
-This means that the database version will not be updated, and new pods will not automatically spin up to join the cluster if necessary.
-Please see EDB's documentation for more details about what may happen to an operator-built database without a license after the trial period has expired.
+Those without a license can use the operator to build a database cluster to test, which will operate for 30 days. If there is no license added to the database cluster before the end of the 30 period, the operator will no longer perform work on the database pods. This means that the database version will not be updated, and new pods will not automatically spin up to join the cluster if necessary. Please see EDB's documentation for more details about what may happen to an operator-built database without a license after the trial period has expired.
 
 ### How to Request  
 
-Teams do not need to request anything from the platform team in order to make use of this operator. 
-Licenses are required in order to ensure that your database maintains its HA status after 30 days.
-If a team wishes to purchase a license, they should contact [Olena Mitovska](mailto:olena.mitovska@gov.bc.ca) in order to discuss options - 
-licenses are purchased collectively for ease of administration.
+Licenses are required in order to ensure that your database maintains its HA status after 30 days. If a team wishes to purchase a license, they should contact [Olena Mitovska](mailto:olena.mitovska@gov.bc.ca) in order to discuss options - licenses are purchased collectively for ease of administration.
+
+The operator is something that teams are able to install and maintain on their own namespaces, requiring no assistance from the Platform Team. However, as a prerequisite to installation, a particular object (called an `operator-group`) must be created on the team's namespace using elevated privileges. When your team contacts Olena to discuss license options, she will also discuss how to have an `operator-group` created for you on the relevant namespaces.
 
 ### Availability
 
@@ -58,31 +50,20 @@ If something goes wrong with the operator that requires the Platform Services Te
 
 #### Help with your Database - RDBA
 
-Those who have purchased a license will have access to the RDBA support team. 
-They will contact you about the best methods for obtaining their support.
-They will require some access to your project in order to provide full support for your database -
-each team is welcome to determine how much access they are willing to provide.
-Teams who have purchased this type of support should turn to RDBA first with any problem regarding their database.
+Those who have purchased a license will have access to the RDBA support team.  They will contact you about the best methods for obtaining their support. They will require some access to your project in order to provide full support for your database -
+each team is welcome to determine how much access they are willing to provide. Teams who have purchased this type of support should turn to RDBA first with any problem regarding their database.
 
-Should RDBA determine that the problem requires elevated privileges, teams are encouraged to work with RDBA to provide that support where possible.
-If, for example, the RDBA team requires admin privileges on a namespace but your team has determined that they will not provide that level of access,
-an admin from the your team should work directly with RDBA to take the necessary action.
+Should RDBA determine that the problem requires elevated privileges, teams are encouraged to work with RDBA to provide that support where possible. If, for example, the RDBA team requires admin privileges on a namespace but your team has determined that they will not provide that level of access, an admin from the your team should work directly with RDBA to take the necessary action.
 
-If the elevated privileges required to deal with the problem are beyond what the project team can provide, 
-please contact the Platform Services team directly in #edb channel in Rocketchat if the problem is not urgent or in #devops-sos if it is urgent and is impacting production workloads. 
-It is very unlikely that the platform services team should be involved in any issue that is not directly related to the operator itself.
-Please ensure that this level of cluster-wide privileges are needed, before contacting the Platform Services team.
+If the elevated privileges required to deal with the problem are beyond what the project team can provide, please contact the Platform Services team directly in #edb channel in Rocketchat if the problem is not urgent or in #devops-sos if it is urgent and is impacting production workloads. It is very unlikely that the platform services team should be involved in any issue that is not directly related to the operator itself. Please ensure that this level of cluster-wide privileges are needed, before contacting the Platform Services team.
 
 If you are certain that it is a cluster-level issue, please contact the team via the `#devops-sos` channel on [RocketChat](https://chat.developer.gov.bc.ca/channel/devops-sos).
 
 #### Help with your Database - Community
 
-The best source of help is the vibrant community of development teams using Postgres for their projects. 
-You can find this highly talented and knowledgeable group in the `#edb` channel on [RocketChat](https://chat.developer.gov.bc.ca/channel/edb).
+The best source of help is the vibrant community of development teams using Postgres for their projects. You can find this highly talented and knowledgeable group in the `#edb` channel on [RocketChat](https://chat.developer.gov.bc.ca/channel/edb).
 
-If there is a cluster-wide problem with the operator, the platform services team should be notified in order to troubleshoot and fix the issue.
-Please be sure that this level of cluster-wide privileges are needed before contacting platform services.
-If you are certain that it is a cluster-level issue, please contact the team via the `#devops-sos` channel on [RocketChat](https://chat.developer.gov.bc.ca/channel/devops-sos).
+If there is a cluster-wide problem with the operator, the platform services team should be notified in order to troubleshoot and fix the issue. Please be sure that this level of cluster-wide privileges are needed before contacting platform services. If you are certain that it is a cluster-level issue, please contact the team via the `#devops-sos` channel on [RocketChat](https://chat.developer.gov.bc.ca/channel/devops-sos).
 
 
 ## What Does It Cost?
@@ -101,8 +82,7 @@ If you wish to purchase a database and/or support license, contact [Olena Mitovs
 The team supporting this service administers the EDB operator used to install the database, but does not administer your database itself.
 
 [RocketChat](https://chat.developer.gov.bc.ca) is the primary mode of communication. 
-Specifically the `#edb` channel should be used for engage the community for best practices, configuration and troubleshooting questions.
-You may also wish to keep an eye on the `#patroni` channel as well to keep up with database problems, as Patroni also uses Postgres and thus some issues may cross over between the two HA solutions.
+Specifically the `#edb` channel should be used for engage the community for best practices, configuration and troubleshooting questions. ****You may also wish to keep an eye on the `#patroni` channel as well to keep up with database problems, as Patroni also uses Postgres and thus some issues may cross over between the two HA solutions.
 
 For cluster wide service notifications that may impact the operator or your database, monitor the `#devops-alerts` channels in [RocketChat](https://chat.developer.gov.bc.ca/channel/devops-alerts).
 

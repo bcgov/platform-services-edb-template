@@ -13,5 +13,3 @@ There will also be templates for users to support installation of the operator i
 You can find operational and architectural documentation in the `docs` folder.
 
 Templates for installing the CRDs will be controlled by CCM and are contained in the CRM repo rather than being here.
-
-oc process -f permissive-nsp.yaml -p NAMESPACE=caggles-test | oc apply -f -

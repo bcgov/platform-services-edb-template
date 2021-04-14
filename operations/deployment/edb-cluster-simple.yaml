@@ -3,21 +3,6 @@ kind: Template
 metadata:
   name: edb-cluster-template
 objects:
-- apiVersion: v1
-  stringData:
-    password: ${APP_USER_PASSWORD}
-    username: ${APP_USER_NAME}
-  kind: Secret
-  metadata:
-    name: ${CLUSTER_NAME}-edb-app-user
-  type: kubernetes.io/basic-auth
-- apiVersion: v1
-  stringData:
-    password: ${SUPER_USER_PASSWORD}
-  kind: Secret
-  metadata:
-    name: ${CLUSTER_NAME}-edb-super-user
-  type: kubernetes.io/basic-auth
 - apiVersion: postgresql.k8s.enterprisedb.io/v1
   kind: Cluster
   metadata:
@@ -27,19 +12,6 @@ objects:
     instances: ${{CLUSTER_REPLICAS}}
     licenseKey: ${CLUSTER_LICENSE}
     primaryUpdateStrategy: unsupervised
-    postgresql:
-      parameters:
-        shared_buffers: ${POSTGRES_SHARED_BUFFERS}
-      pg_hba:
-        - local all all md5
-    bootstrap:
-      initdb:
-        database: ${DATABASE_NAME}
-        owner: ${APP_USER_NAME}
-        secret:
-          name: ${CLUSTER_NAME}-edb-app-user
-    superuserSecret:
-      name: ${CLUSTER_NAME}-edb-super-user
     storage:
       storageClass: ${STORAGE_CLASS}
       size: ${STORAGE_SIZE}
@@ -54,15 +26,6 @@ parameters:
 - name: CLUSTER_NAME
   description: The name of the cluster object, also used to mark the secrets as belonging to a specific cluster
   required: true
-- name: APP_USER_NAME
-  description: The username for the database's applicatiom account (not the superuser)
-  required: true
-- name: APP_USER_PASSWORD
-  generate: expression
-  from: "[a-zA-Z0-9]{20}"
-- name: SUPER_USER_PASSWORD
-  generate: expression
-  from: "[a-zA-Z0-9]{20}"
 - name: CLUSTER_LICENSE
   value: ""
 - name: POSTGRES_VERSION
@@ -70,11 +33,6 @@ parameters:
   required: true
 - name: CLUSTER_REPLICAS
   value: "3"
-  required: true
-- name: POSTGRES_SHARED_BUFFERS
-  value: "256MB"
-  required: true
-- name: DATABASE_NAME
   required: true
 - name: STORAGE_CLASS
   value: "netapp-block-standard"

@@ -1,6 +1,8 @@
 # EDB User Documentation
 
-This document will cover all the information necessary for users to make use of EDB and its operator on our cluster.
+Teams making use of the EDB Operator will be using a namespace-scoped operator. This places the entire operator under the team's control (yay!) but requires that the operator be installed separately on every namespace in which it is intended to be used (boo). Thankfully, the operator is very lightweight, and this allows teams with RDBA support to provide them with full access to the operator itself, should that be required during support issues (rather than having to seek help for such issues through the Platform Services team).
+
+Before you do anything else, you'll need to install the operator - instructions for that are below. Once the operator is installed and running (and you'll know it is when you see a pod called `postgresql-operator-controller-manager` in your namespace), you can get to work setting up your clusters, backups, and other database operations!
 
 ## Installing the Operator
 

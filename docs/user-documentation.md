@@ -2,9 +2,9 @@
 
 Teams making use of the EDB Operator will be using a namespace-scoped operator. This places the entire operator under the team's control (yay!) but requires that the operator be installed separately on every namespace in which it is intended to be used (boo). Thankfully, the operator is very lightweight, and this allows teams with RDBA support to provide them with full access to the operator itself, should that be required during support issues (rather than having to seek help for such issues through the Platform Services team).
 
-Before you do anything else, you'll need to install the operator - instructions for that are below. Once the operator is installed and running (and you'll know it is when you see a pod called `postgresql-operator-controller-manager` in your namespace), you can get to work setting up your clusters, backups, and other database operations!
+**Before you do anything else, you'll need to install the operator - instructions for that are below.** Once the operator is installed and running (and you'll know it is when you see a pod called `postgresql-operator-controller-manager` in your namespace), you can get to work setting up your clusters, backups, and other database operations!
 
-## Installing the Operator
+## Step 1: Installing the Operator
 
 You can find a definition for a namespace-scoped EDB operator in `operations/deployment` - run the following command to install it: `oc apply -f edb-operator-subscription`
 
@@ -12,7 +12,7 @@ If you wish to alter the definition of the subscription object, please **only ch
 
 If it fails, please check that you have namespace admin rights - edit is not sufficient. You must be an administrator of your namespace. If you do have the correct permissions but it still fails, the issue may be that your namespace doesn't have an operator group yet. Please ping a member of the platform services team on the #edb channel on Rocketchat to find information about how to request that change.
 
-## Installing a Cluster
+## Step 2: Installing a Cluster
 
 You can find a template for installing an EDB cluster in `operations/deployment` - run the following command to install it: 
 `oc process -f edb-cluster.yaml --param-file=example-cluster.param | oc apply -f -`

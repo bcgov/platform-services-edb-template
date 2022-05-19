@@ -2,6 +2,8 @@
 
 This repo contains documentation and templates for the use of EDB and its operator.
 
+[![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)](<Redirect-URL>)
+
 ## End Users
 
 You can find user documentation and the service definition in the `docs` folder.
